@@ -1,0 +1,3 @@
+{{ object.name }}
+{{ object.device_set }}
+{{ object.id }}

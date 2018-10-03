@@ -1,0 +1,97 @@
+{% extends 'IMS/base.html' %}
+{% block content %}
+{% if device_list and campus_list and teacher_list %}
+<div class="container">
+    
+    <div class="panel panel-default" style="margin-top:20px">
+        <div class="panel-heading" id="heading-one" role="tab">
+            <h4 class="panel-title">
+                <a aria-expanded="true" aria-controls="One" href="#One" data-toggle="collapse">
+                    Devices
+                </a>
+                <span class="badge">{{ device_list|length }}</span>
+            </h4>
+        </div>
+        <div class="in panel-collapse collapse container-fluid" id="One" role="tabpanel" aria-labelledby="heading-one">
+            <div class="list-group row" style="margin-bottom:0px">
+                <div class="list-group-item col-md-1">
+                    <b>Device</b>
+                </div>
+                <div class="list-group-item col-md-3">
+                    <b>Campus Name</b>
+                </div>
+                <div class="list-group-item col-md-2">
+                    <b>Name</b>
+                </div>
+                <div class="list-group-item col-md-2">
+                    <b>Status</b>
+                </div>
+                <div class="list-group-item col-md-4">
+                    <b>Device ID</b>
+                </div>
+            </div>
+            {% for device in device_list %}
+            <div class="list-group row" style="margin-bottom:0px">
+                <div class="list-group-item col-md-1">
+                    <a href="/ims/device/{{ device.id }}/">{{ device.name }}</a>
+                </div>
+                <div class="list-group-item col-md-3">
+                    <a href="/ims/campus/{{ device.owner.campus.id }}">{{ device.owner.campus.name }}</a>
+                </div>
+                <div class="list-group-item col-md-2">
+                    {{ device.owner.name }}
+                </div>
+                <div class="list-group-item col-md-2">
+                    {{ device.status }}
+                </div>
+                <div class="list-group-item col-md-4">
+                    <a href="/ims/device/{{ device.id }}/">{{ device.id }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="panel panel-default" style="margin-top:20px">
+        <div class="panel-heading" id="heading-two" role="tab">
+            <h4 class="panel-title">
+                <a aria-expanded="true" aria-controls="Two" href="#Two" data-toggle="collapse">
+                    Teachers
+                </a>
+                <span class="badge">{{ teacher_list|length }}</span>
+            </h4>
+        </div>
+        <div class="in panel-collapse collapse container-fluid" id="Two" role="tabpanel" aria-labelledby="heading-two">
+            <div class="list-group row" style="margin-bottom:0px">
+                <div class="list-group-item col-md-4">
+                    <b>Name</b>
+                </div>
+                <div class="list-group-item col-md-4">
+                    <b>Campus</b>
+                </div>
+                <div class="list-group-item col-md-4">
+                    <b>Department</b>
+                </div>
+            </div>
+            {% for teacher in teacher_list %}
+            <div class="list-group row" style="margin-bottom:0px">
+                <div class="list-group-item col-md-4">
+                    <a href="/ims/teacher/{{ teacher.id }}/">{{ teacher.name }}</a>
+                </div>
+                <div class="list-group-item col-md-4">
+                    <a href="/ims/campus/{{ teacher.campus.id }}">{{ teacher.campus.name }}</a>
+                </div>
+                <div class="list-group-item col-md-4">
+                    {{ teacher.department }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+{% else %}
+    <p>No devices are available.</p>
+{% endif %}
+{% endblock %}
