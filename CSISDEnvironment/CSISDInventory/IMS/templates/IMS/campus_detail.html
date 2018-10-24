@@ -2,45 +2,26 @@
 {% block content %}
 {% if campus %}
 <div class="container">
-    <h2><a href="/ims/">China Spring Inventory System</a></h2>
     <h3>{{ campus.name }}</h3>
     <h5>{{ campus.address }}</h5>
-    <div class="panel panel-default" style="margin-top:20px">
-        <div class="panel-heading" id="heading-one" role="tab">
-            <h4 class="panel-title">
-                <a aria-expanded="false" aria-controls="One" href="#One" data-toggle="collapse">
-                    Teachers
-                </a>
-                <span class="badge">{{ campus.teacher_set.count }}</span>
-            </h4>
-        </div>
-        <div class="in panel-collapse collapse container-fluid" id="One" role="tabpanel" aria-labelledby="heading-one">
-            <div class="list-group row" style="margin-bottom:0px">
-                <div class="list-group-item col-md-4">
-                    <b>Name</b>
-                </div>
-                <div class="list-group-item col-md-4">
-                    <b>Department</b>
-                </div>
-                <div class="list-group-item col-md-4">
-                    <b>Device Count</b>
-                </div>
-            </div>
-            {% for teacher in teacher_list %}
-            <div class="list-group row" style="margin-bottom:0px">
-                <div class="list-group-item col-md-4">
-                    <a href="/ims/teacher/{{ teacher.id }}/">{{ teacher.name }}</a>
-                </div>
-                <div class="list-group-item col-md-4">
-                    {{ teacher.department }}
-                </div>
-                <div class="list-group-item col-md-4">
-                    {{ teacher.device_set.count }}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    <table class="table table-striped table-bordered table-hover table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Campus</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for teacher in teacher_list %}
+        <tr>
+          <th scope="row"><a href="/ims/teacher/{{ teacher.id }}/">{{ teacher.name }}</a></th>
+          <td><a href="/ims/campus/{{ teacher.campus.id }}">{{ teacher.campus.name }}</a></td>
+          <td>{{ teacher.email }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 </div>
 
 

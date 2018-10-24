@@ -20,9 +20,8 @@ class Campus(models.Model):
     
 class Teacher(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=30, default="Not Assigned")
-    phone = models.CharField(max_length=11)
-    department = models.CharField(max_length=20)
+    name = models.CharField(max_length=40, default="Not Assigned")
+    email = models.EmailField(max_length=40)
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, default="Not Assigned")
     
     def __str__(self):
@@ -31,20 +30,20 @@ class Teacher(models.Model):
     
 class Device(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    inUse = 'In Use'
-    inStock = 'In Stock'
-    inMaintenance = 'In Maintenance'
-    damaged = 'Damaged'
+    iU=1
+    iS=2
+    iM=3
+    dM=4
     statusChoices = (
-        (inUse, 'In Use'),
-        (inStock, 'In Stock'),
-        (inMaintenance, 'In Maintenance'),
-        (damaged, 'Damaged'),
+        (iU, 'In Use'),
+        (iS, 'In Stock'),
+        (iM, 'In Maintenance'),
+        (dM, 'Damaged'),
     )
     
     name = models.CharField(max_length=20)
     brand = models.CharField(max_length=20)
-    status = models.CharField(max_length=20, choices=statusChoices, default=inStock)
+    status = models.CharField(max_length=20, choices=statusChoices)
     owner = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="teachers")
     
     def __str__(self):

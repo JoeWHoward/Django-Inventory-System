@@ -16,7 +16,7 @@ class CampusAdmin(admin.ModelAdmin):
 admin.site.register(Campus, CampusAdmin)
 
 class TeacherAdmin(admin.ModelAdmin):
-    list_display=['name', 'phone', 'department', 'campus']
+    list_display=['name', 'email', 'campus']
     list_filter=['name', 'campus']
     
 admin.site.register(Teacher, TeacherAdmin)

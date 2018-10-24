@@ -35,6 +35,11 @@ def device_detail(request, id):
     device = get_object_or_404(Device, pk=id)
     success=False
     
+    iU=1
+    iS=2
+    iM=3
+    dM=4
+    
     if device.status == 'In Use':
         color="#C21807"
     elif device.status == 'In Stock':
@@ -43,16 +48,12 @@ def device_detail(request, id):
         color="#edc900"
     else:
         color="#000"
-    
-    inUse = 'In Use'
-    inStock = 'In Stock'
-    inMaintenance = 'In Maintenance'
-    damaged = 'Damaged'
+        
     statuses = (
-        (inUse, 'In Use'),
-        (inStock, 'In Stock'),
-        (inMaintenance, 'In Maintenance'),
-        (damaged, 'Damaged'),
+        (iU, 'In Use'),
+        (iS, 'In Stock'),
+        (iM, 'In Maintenance'),
+        (dM, 'Damaged'),
     )
     
     #form = request.POST
