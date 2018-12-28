@@ -1,5 +1,5 @@
 {% extends 'IMS/base.html' %}
-{% load qr_code %}
+{% load qr_code ims_extras %}
 {% block content %}
 <div class="container">
     <h3>{{ device.brand }}  {{ device }} // {{ device.owner.name }} // {{ device.owner.campus.name }} // <span style="color:{{color}}">{{ device.status }}</span></h3>
@@ -39,7 +39,9 @@
     
     <div class="row">
         <div class="col-xs-12 text-center">
-            {% qr_from_text device.id size=25 %}
+            {% with "http://127.0.0.1:8000/ims/device/"|addstr:device.id as deviceurl %}
+            {% qr_from_text deviceurl size=25 %}
+            {% endwith %}
             <p class="small text-center">{{ device.id }}</p>
         </div>
     </div>

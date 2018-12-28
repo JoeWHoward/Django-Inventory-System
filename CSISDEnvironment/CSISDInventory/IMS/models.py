@@ -30,10 +30,10 @@ class Teacher(models.Model):
     
 class Device(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    iU=1
-    iS=2
-    iM=3
-    dM=4
+    iU="In Use"
+    iS="In Stock"
+    iM="In Maintenance"
+    dM="Damaged"
     statusChoices = (
         (iU, 'In Use'),
         (iS, 'In Stock'),
