@@ -143,6 +143,10 @@ CACHES = {
 
 QR_CODE_CACHE_ALIAS = 'qr-code'
 
+QR_CODE_URL_PROTECTION = {
+    'ALLOWS_EXTERNAL_REQUESTS_FOR_REGISTERED_USER': True  # Tells whether a registered user can request the QR code URLs from outside a site that uses this app. It can be a boolean value used for any user or a callable that takes a user as parameter. Defaults to False (nobody can access the URL without the security token).
+}
+
 # Haystack and Whoosh search settings
 # https://bitbucket.org/mchaput/whoosh/wiki/Home
 

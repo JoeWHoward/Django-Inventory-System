@@ -1,0 +1,14 @@
+@media print {
+    form, head, nav, h3, hr {
+        display:none;
+    }
+    body {
+        font-size: 12px;
+        line-height: 1.3;
+        width: 448px;
+        height: 259px;
+    }
+    .alert {
+        display: none;
+    }
+}
